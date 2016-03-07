@@ -1,0 +1,43 @@
+extends ../main
+
+block content
+    .row
+        .col-lg-12
+            .panel.panel-default
+                .panel-heading 添加学生
+                    a.btn.btn-link.pull-right 返回
+                .panel-body
+                    form.form-horizontal#stu_add_form(method='post',action='/admin/student/save')
+                        .form-group
+                            label.col-sm-2.control-label 学号
+                            .col-sm-8
+                                input.form-control#AjaxSno(type='text',name='student[sno]')
+                        .form-group
+                            label.col-sm-2.control-label 姓名
+                            .col-sm-8
+                                input.form-control#AjaxSno(type='text',name='student[sname]')
+                        .form-group
+                            label.col-sm-2.control-label 性别
+                            .col-sm-8
+                                label.radio-inline
+                                    input(type='radio',name='student[sex]',value='男',checked) 
+                                    | 男
+                                label.radio-inline
+                                    input(type='radio',name='student[sex]',value='女') 
+                                    | 女
+                        .form-group
+                            label.col-sm-2.control-label 班级
+                            .col-sm-8
+                                select.form-control(name='student[class]')
+                                    each c in classes
+                                        option(value=c._id) #{c.cno}
+                        .form-group
+                            label.col-sm-2.control-label 宿舍
+                            .col-sm-8
+                                select.form-control(name='student[dorm]')
+                                    each d in dorms
+                                        option(value=d._id) #{d.dno}
+                        .form-group
+                            .col-sm-offset-2.col-sm-10
+                                button.btn.btn-primary(type='submit',id='stu_add_submit',style='margin-right:10px') 提交
+                                button.btn.btn-default(type='reset',id='stu_add_reset') 重置

@@ -1,0 +1,35 @@
+extends ../main
+
+block content
+    .panel.panel-default
+        .panel-heading 班级列表
+            .input-group.pull-right
+                input.form-control(type='text',placeholder='Enter keyword', id='search')
+        .panel-body.table-box
+            .row
+                table.table.table-striped.table-responsive
+                    thead
+                        tr.success
+                            th 序号
+                            th 班号
+                            th 班名
+                            th 辅导员
+                            th 人数
+                            th 查看
+                            th 编辑
+                            th 删除
+                    tbody#claTable
+                        each c,i in classes
+                            tr
+                                td= (i+1)
+                                td #{c.cno}
+                                td #{c.cname}
+                                td #{c.admin.fullname}
+                                td #{c.count}
+                                td: button.btn.btn-info(uid='#{c._id}',data-toggle='modal',data-target='#ViewModal') 查看
+                                td: button.btn.btn-warning(uid='#{c._id}',data-toggle='modal',data-target='#EditModal') 编辑
+                                td: button.btn.btn-danger(uid='#{c._id}') 删除
+            .row
+                .bs-example(data-example-id='disabled-active-pagination')
+                    .page-info.pull-left 共
+                        span.total-list

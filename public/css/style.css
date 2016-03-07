@@ -1,0 +1,19 @@
+.poster img {
+    width: 100%
+}
+#movieDetail dt{
+    height: 50px;
+    font-size: 16px;
+}
+.cat-block{
+    margin-bottom: 20px;
+}
+
+.cat-title{
+    border-bottom: solid 1px #eee;
+    margin-bottom: 10px;
+    background: #f9f9f9;
+}
+
+.cat-title h4{
+}

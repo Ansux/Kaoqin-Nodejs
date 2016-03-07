@@ -1,0 +1,100 @@
+extends ../main
+
+block content
+    .panel.panel-default
+        .panel-heading 学生列表
+            .input-group.pull-right
+                input.form-control(type='text',placeholder='Enter keyword', id='search')
+        .panel-body.table-box
+            .row
+                table.table.table-striped.table-responsive
+                    thead
+                        tr.success
+                            th 序号
+                            th 学号
+                            th 姓名
+                            th 性别
+                            th 生日
+                            th 班级
+                            th 宿舍
+                            th 查看
+                            th 编辑
+                            th 删除
+                    tbody#stuTable
+                        each s,i in students
+                            tr
+                                td= (i+1)
+                                td #{s.sno}
+                                td #{s.sname}
+                                td #{s.sex}
+                                td #{s.birthday}
+                                td #{s.class.cno}
+                                td #{s.dorm.dno}
+                                td: button.btn.btn-info(uid='#{s._id}',data-toggle='modal',data-target='#ViewModal') 查看
+                                td: button.btn.btn-warning(uid='#{s._id}',data-toggle='modal',data-target='#EditModal') 编辑
+                                td: button.btn.btn-danger(uid='#{s._id}') 删除
+            .row
+                .bs-example(data-example-id='disabled-active-pagination')
+                    .page-info.pull-left 共
+                        span.total-list
+    .modal.fade(id='ViewModal',tabindex='-1',role='dialog',aria-labelledby='myModalLabel1')
+        .modal-dialog(role='document')
+            .modal-content
+                .modal-header
+                    button.close(type='button',data-dismiss='modal',aria-label='close')
+                        span(aria-hidden='true') &times;
+                    h4.modal-title#myModalLabel1 View-sa
+                .modal-body
+                    table.table.table-condensed
+                        thead
+                            tr
+                                th 学号
+                                th 姓名
+                                th 性别
+                                th 班级
+                                th 宿舍
+                        tbody
+                            tr#stu_info
+                                td 正在获取数据中...
+                .modal-footer
+                    button.btn.btn-default(type='button',data-dismiss='modal') 关闭
+    .modal.fade#EditModal(tabindex='-1',role='dialog',aria-labelledby='myModalLabel2')
+        .modal-dialog(role='document')
+            .modal-content
+                .modal-header
+                    button.close(type='button',data-dismiss='modal',aria-label='Close')
+                        span(aria-hidden='true') &times;
+                    h4.modal-title#myModalLabel2 Edit-sa
+                .modal-body
+                    form.form-horizontal#stu_update_form
+                        input(type='hidden',id='stu_id')
+                        .form-group
+                            label.col-sm-2.control-label(for='inputSno') 学号
+                            .col-sm-6
+                                input.form-control(id='inputSno',name='student[sno]',type='text',disabled)
+                        .form-group
+                            label.col-sm-2.control-label(for='inputSname') 姓名
+                            .col-sm-6
+                                input.form-control(id='inputSname',name='student[sname]',type='text')
+                        .form-group
+                            label.col-sm-2.control-label(for='inputSex') 性别
+                            .col-sm-6
+                                label.radio-inline
+                                    input.radioSex(type='radio',name='sex',value='男') 
+                                    | 男
+                                label.radio-inline
+                                    input.radioSex(type='radio',name='sex',value='女') 
+                                    | 女
+                        .form-group
+                            label.col-sm-2.control-label(for='inputClass') 班级
+                            .col-sm-6
+                                select.form-control(name='student[class]',id='classes')
+                        .form-group
+                            label.col-sm-2.control-label(for='inputDorm') 宿舍
+                            .col-sm-6
+                                select.form-control(name='student[dorm]',id='dorms')
+                        .form-group
+                            .col-sm-offset-2.col-sm-6
+                                button.btn.btn-success(type='button',id='stu_upd_save') 提交
+block javascript
+    script(src='/js/student.js')

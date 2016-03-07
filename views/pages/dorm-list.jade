@@ -1,0 +1,38 @@
+extends ../main
+
+block content
+    .panel.panel-default
+        .panel-heading 班级列表
+            .input-group.pull-right
+                input.form-control(type='text',placeholder='Enter keyword', id='search')
+        .panel-body.table-box
+            .row
+                table.table.table-striped.table-responsive
+                    thead
+                        tr.success
+                            th 序号
+                            th 宿舍号
+                            th 宿舍楼
+                            th 宿舍长
+                            th 人数
+                            th 查看
+                            th 编辑
+                            th 删除
+                    tbody#claTable
+                        each d,i in dorms
+                            tr
+                                td= (i+1)
+                                td #{d.dno}
+                                td #{d.build}
+                                if d.admin
+                                    td #{d.admin.sname}
+                                else
+                                    td 未知
+                                td 32
+                                td: button.btn.btn-info(uid='#{d._id}',data-toggle='modal',data-target='#ViewModal') 查看
+                                td: button.btn.btn-warning(uid='#{d._id}',data-toggle='modal',data-target='#EditModal') 编辑
+                                td: button.btn.btn-danger(uid='#{d._id}') 删除
+            .row
+                .bs-example(data-example-id='disabled-active-pagination')
+                    .page-info.pull-left 共
+                        span.total-list

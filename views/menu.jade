@@ -1,0 +1,64 @@
+li.parent
+    a(data-toggle='collapse',href='#sub-item-1')
+        span.glyphicon.glyphicon-th-large
+        | 学生管理
+        span.icon.pull-right
+            em.glyphicon.glyphicon-s.glyphicon-chevron-down
+    ul.children.collapse#sub-item-1
+        li
+            a(href='/admin/student/list')
+                span.glyphicon.glyphicon-play
+                | 学生列表
+        li
+            a(href='/admin/student/new')
+                span.glyphicon.glyphicon-play
+                | 添加学生
+li.parent
+    a(data-toggle='collapse',href='#sub-item-2')
+        span.glyphicon.glyphicon-th-large
+        | 班级管理
+        span.icon.pull-right
+            em.glyphicon.glyphicon-s.glyphicon-chevron-down
+    ul.children.collapse#sub-item-2
+        li
+            a(href='/admin/class/list')
+                span.glyphicon.glyphicon-play
+                | 班级列表
+        li
+            a(href='/admin/class/new')
+                span.glyphicon.glyphicon-play
+                | 添加班级
+li.parent
+    a(data-toggle='collapse',href='#sub-item-3')
+        span.glyphicon.glyphicon-th-large
+        | 宿舍管理
+        span.icon.pull-right
+            em.glyphicon.glyphicon-s.glyphicon-chevron-down
+    ul.children.collapse#sub-item-3
+        li
+            a(href='/admin/dorm/list')
+                span.glyphicon.glyphicon-play
+                | 宿舍列表
+        li
+            a(href='/admin/dorm/new')
+                span.glyphicon.glyphicon-play
+                | 添加宿舍
+li.parent
+    a(data-toggle='collapse',href='#sub-item-4')
+        span.glyphicon.glyphicon-th-large
+        | 离校考勤
+        span.icon.pull-right
+            em.glyphicon.glyphicon-s.glyphicon-chevron-down
+    ul.children.collapse#sub-item-4
+        li
+            a(href='/admin/holiday/list')
+                span.glyphicon.glyphicon-play
+                | 假期管理
+        li
+            a(href='/admin/check/list')
+                span.glyphicon.glyphicon-play
+                | 考勤列表
+        li
+            a(href='/admin/check/new')
+                span.glyphicon.glyphicon-play
+                | 考勤统计

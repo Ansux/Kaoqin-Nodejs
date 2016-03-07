@@ -1,0 +1,56 @@
+doctype
+html
+    head
+        meta(charset='utf-8')
+        meta(name="viewport",content="width=device-width, initial-scale=1")
+        title #{title}
+        link(href='/css/bootstrap.min.css',rel='stylesheet')
+        link(href='/css/main.css',rel='stylesheet')
+        block css
+    body
+        nav.navbar.navbar-inverse.navbar-fixed-top(role='navigation')
+            .container-fluid
+                .navbar-header
+                    button.navbar-toggle.collapsed(type='button',data-toggle='collapse',data-target='#sidebar-collapse')
+                        span.sr-only Toggle navigation
+                        span.icon-bar
+                        span.icon-bar
+                        span.icon-bar
+                    a.navbar-brand 网上考勤
+                    ul.user-menu
+                        li.dropdown.pull-right
+                            a.dropdown-toggle(data-toggle='dropdown')
+                                span.glyphicon.glyphicon-user
+                                | #{admin.fullname} 
+                                span.caret
+                                ul.dropdown-menu(role='menu')
+                                    li
+                                        a(href='/setting')
+                                            span.glyphicon.glyphicon-cog
+                                            | 设置
+                                    li
+                                        a#logout
+                                            span.glyphicon.glyphicon-log-out
+                                            | 注销
+         .col-sm-3.col-lg-2.sidebar#sidebar-collapse
+            form.web-search(role='search',method='get',action='/search')
+                .form-group
+                    input.form-control(name='kw',placeholder='Enter keyword')
+                    button(type='submit')
+                        span.glyphicon.glyphicon-search
+            ul.nav.menu#UserNav
+                block menu
+                include menu
+            .attribution 小苏梦工厂
+        .col-sm-9.col-sm-offset-3.col-lg-10.col-lg-offset-2.main
+            .row#breadcrumb
+                ol.breadcrumb
+                    li
+                        a(href='/admin')
+                            span.glyphicon.glyphicon-home
+                            |  首页
+            <!-- content block -->
+            block content
+    script(src='/js/jquery.min.js')
+    script(src='/js/bootstrap.min.js')
+    block javascript

@@ -1,0 +1,94 @@
+extends ../layout
+
+block content
+    .container
+        .row
+            table.table.table-striped.table-responsive
+                thead
+                    tr
+                        th 登录名
+                        th 密码
+                        th 姓名
+                        th 性别
+                        th 手机
+                        th 邮箱
+                        th 权限
+                        th 查看
+                        th 修改
+                        th 删除
+                tbody#stuTable
+                    each a in admins
+                        tr
+                            td= a.uid
+                            td= a.pwd
+                            td= a.fullname
+                            td= a.sex
+                            td= a.phone
+                            td= a.email
+                            td= a.role
+                            td: button.btn.btn-info(uid='#{a._id}',data-toggle='modal',data-target='#ViewModal') 查看
+                            td: button.btn.btn-warning(uid='#{a._id}',data-toggle='modal',data-target='#EditModal') 编辑
+                            td: button.btn.btn-danger(uid='#{a._id}') 删除
+    .modal.fade(id='ViewModal',tabindex='-1',role='dialog',aria-labelledby='myModalLabel1')
+        .modal-dialog(role='document')
+            .modal-content
+                .modal-header
+                    button.close(type='button',data-dismiss='modal',aria-label='close')
+                        span(aria-hidden='true') &times;
+                    h4.modal-title#myModalLabel1 View-sa
+                .modal-body
+                    table.table.table-condensed
+                        thead
+                            tr
+                                th 登录名
+                                th 密码
+                                th 姓名
+                                th 性别
+                                th 手机
+                                th 邮箱
+                                th 权限
+                        tbody
+                            tr#stu_info
+                                td 正在获取数据中...
+                .modal-footer
+                    button.btn.btn-default(type='button',data-dismiss='modal') 关闭
+    .modal.fade#EditModal(tabindex='-1',role='dialog',aria-labelledby='myModalLabel2')
+        .modal-dialog(role='document')
+            .modal-content
+                .modal-header
+                    button.close(type='button',data-dismiss='modal',aria-label='Close')
+                        span(aria-hidden='true') &times;
+                    h4.modal-title#myModalLabel2 Edit-sa
+                .modal-body
+                    .form-horizontal#stu_update_form
+                        input(type='hidden',id='admin_id')
+                        .form-group
+                            label.col-sm-2.control-label(for='inputFullname') 姓名
+                            .col-sm-6
+                                input.form-control(id='inputFullname',name='admin[fullname]',type='text')
+                        .form-group
+                            label.col-sm-2.control-label(for='inputSex') 性别
+                            .col-sm-6
+                                label.radio-inline
+                                    input.radioSex(type='radio',name='admin[sex]',value='男') 
+                                    | 男
+                                label.radio-inline
+                                    input.radioSex(type='radio',name='admin[sex]',value='女') 
+                                    | 女
+                        .form-group
+                            label.col-sm-2.control-label(for='inputPhone') 手机
+                            .col-sm-6
+                                input.form-control(id='inputPhone',name='admin[phone]',type='text')
+                        .form-group
+                            label.col-sm-2.control-label(for='inputEmail') 邮箱
+                            .col-sm-6
+                                input.form-control(id='inputEmail',name='admin[email]',type='text')
+                        .form-group
+                            label.col-sm-2.control-label(for='inputRole') 权限
+                            .col-sm-6
+                                input.form-control(id='inputRole',name='admin[role]',type='text')
+                        .form-group
+                            .col-sm-offset-2.col-sm-6
+                                button.btn.btn-success(type='submit',id='admin_upd_save') 提交        
+block javascript
+    script(src='/js/admin.js')

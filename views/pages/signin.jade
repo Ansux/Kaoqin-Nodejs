@@ -1,0 +1,53 @@
+doctype
+html
+    head
+        meta(charset='utf-8')
+        meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
+        title #{title}
+        link(href='/css/bootstrap.min.css',rel='stylesheet')
+        link(href='/css/login.css',rel='stylesheet')
+    body
+        .navbar.navbar-fixed-top#login_nav(role='navigation')
+            .navbar-header
+                button.navbar-toggle(type='button',data-toggle='collapse',data-target='.nav-responsive-collapse')
+                    span.sr-only Toggle Navigation
+                    span.icon-bar
+                    span.icon-bar
+                    span.icon-bar
+                a.navbar-brand 校园考勤系统
+            .collapse.navbar-collapse.nav-responsive-collapse.pull-right
+                ul.nav.navbar-nav
+                    li: a(href='###') 去注册
+                    li
+                        a(href='')
+                            span.glyphicon.glyphicon-chevron-left 返回首页
+        #hezi
+            .s_cell
+                .login-container
+                    .content.clearfix
+                        form.from-horizontal#loginForm(role='form',method='post',action='/signin')
+                            h1 Login
+                            p Enter you accout
+                            .form-group
+                                label.sr-only(for='loginId') id
+                                .input-group
+                                    .input-group-addon
+                                        span.glyphicon.glyphicon-user
+                                    input.form-control(type='text',name='uid',id='uid',placeholder='Username')
+                            .form-group
+                                label.sr-only(for='pwd') pwd
+                                .input-group
+                                    .input-group-addon
+                                        span.glyphicon.glyphicon-lock
+                                    input.form-control(type='password',name='pwd',id='pwd',placeholder='Password')
+                            .row.login-submit
+                                .checkbox.col-sm-6
+                                    label
+                                        input#remember(type='checkbox' name='')
+                                        | 记住账号
+                                .col-sm-6.submit
+                                    button.btn.btn-success(type='submit') 立即登录
+            #loading 正在登录中...
+        .zhezhao
+        script(src='/js/jquery.min.js')
+        script(src='/js/bootstrap.min.js')
